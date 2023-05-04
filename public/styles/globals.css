@@ -5,6 +5,11 @@ body {
     color: white !important;
 }
 
+.navbar{
+  background-color: rgba(0, 0, 0, 0.35);
+  min-height: 5rem;
+}
+
 
 .navbar-brand{
     font-size: 1.5rem;
@@ -129,7 +134,7 @@ html{
     box-shadow: 1px -4px 13px 12px rgb(0, 0, 0);
 }
 
-.crops-div-main img{
+.crops-div-main>img{
     position: absolute;
     z-index: -1;
     top: 0;
@@ -147,8 +152,13 @@ html{
   height: 500px;
   width: 500px;
   display: inline-block;
-  background-color: rgb(129, 74, 74);
   margin: 150px 50px;
+}
+
+.crops-div img{
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 .search-bar {
