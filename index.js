@@ -104,17 +104,17 @@ app.route("/login").post(function (req, res) {
 });
 
 app.route("/user").get(async (req, res) => {
-  if (req.isAuthenticated()) {
+  // if (req.isAuthenticated()) {
     
-    const user = await User.findById(req.user.id);
-    let auctionsList = [];
-    if (auctions.length != 0) {
-      for (var i = 0; i < auctions.length; i++) {
-        auctionsList.push(auctions[i]);
-      }
-    }
-    res.render("cutomer", { user: req.user, auctions: auctionsList });
-  }
+  //   const user = await User.findById(req.user.id);
+  //   let auctionsList = [];
+  //   if (auctions.length != 0) {
+  //     for (var i = 0; i < auctions.length; i++) {
+  //       auctionsList.push(auctions[i]);
+  //     }, { user: req.user, auctions: auctionsList }
+  //   }
+    res.render("customer");
+  // }
 });
 
 app.route("/signup").post((req, res) => {

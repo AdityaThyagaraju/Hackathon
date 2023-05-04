@@ -1,34 +1,158 @@
-.login-div{
-    width: 300px;
-    height: 300px;
-    background-color: aqua;
+.login-div {
+  width: 300px;
+  height: 300px;
+  background-color: aqua;
 }
-html{
-    margin-top: -8px;
+html {
+  margin-top: -8px;
 }
-.home-page-img-div{
-    min-height:700px;
+.home-page-image-div {
+  width: 100%;
+  min-height: 700px;
 }
 
-.home-page-img{
-    height: 400px; width: 500px; 
+.intro-div {
+  min-height: 700px;
+}
+.crops-div {
+  height: 500px;
+  width: 500px;
+  display: inline-block;
+  background-color: rgb(129, 74, 74);
+  margin: 150px 50px;
+}
+
+.search-bar {
+  backdrop-filter: blur(3px) brightness(50%);
+  color: white;
+}
+
+.carousel-img {
+  width: 100%;
+  height: 30rem;
+  background-color: black;
+}
+
+.steps-to-start {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 300px;
+  padding: 5%;
+  color: white !important;
+  backdrop-filter: blur(3px) brightness(50%);
+}
+
+.steps {
+  width: 50%;
+  height: 10rem;
+}
+
+.steps-to-start h3 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.steps-to-start a:hover {
+  color: white !important;
+}
+
+ol li:hover {
+  font-size: large;
+}
+
+.a-wrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0.315);
+}
+
+a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.auction-list {
+  background-color: black;
+  padding: 5%;
+  color: white;
+}
+
+.auction-li {
+  display: flex;
+  padding: 5%;
+  background-color: white;
+  color: black;
+}
+
+.auction-li a {
+  float: right;
+}
+
+.auction-li img {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+}
+
+@media screen and (min-width: 800px) {
+  .crops-div-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  .home-page-img {
+    filter: brightness(120%);
+    height: 400px;
+    width: 500px;
     position: absolute;
+    top: 10rem;
     right: 20px;
     margin: 30px 80px 0 0;
-    z-index: 0;
+    z-index: -1;
+  }
+  .intro-div {
+    width: 70%;
+    padding: 5%;
+    padding-top: 300px;
+    padding-left: 10%;
+  }
+  .auction-li {
+    justify-content: center;
+    gap: 1rem;
+  }
 }
-.intro-div{
-    clear: left;
-    margin: 120px 0 80px 80px;
-    padding-top: 200px;
-    width: 50%;
-    vertical-align: bottom;
-    z-index: 1;
-}
-.crops-div{
-    height: 500px;
-    width:500px;
-    display: inline-block;
-    background-color: rgb(129, 74, 74);
-    margin: 150px 50px;
+
+@media screen and (max-width: 800px) {
+  .crops-div {
+    margin-top: 1rem;
+  }
+
+  .home-page-img {
+    height: 400px;
+    width: 500px;
+  }
+  .intro-div {
+    display: flex;
+    padding: 5%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    width: 100%;
+  }
+  .intro-div h1 {
+    font-size: 3em;
+    text-align: center;
+  }
+  .auction-li {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
 }
