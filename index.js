@@ -24,8 +24,8 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-const dbUrl = "mongodb+srv://Aditya:01QldGBG1gmAzrUb@cluster0.m8hzykt.mongodb.net/?retryWrites=true&w=majority"
-mongoose.connect(dbUrl,{useNewUrlParser: true,useUnifiedTopology:true}).then(()=>{
+const dbUrl = "mongodb+srv://Aditya:QgIh7Bze0rYnjYMH@cluster0.oidwt4d.mongodb.net/?retryWrites=true&w=majority"
+mongoose.connect(dbUrl,{useNewUrlParser:true}).then(()=>{
     console.log("connected to database");
 }).catch((err)=>{
     console.log(err);
