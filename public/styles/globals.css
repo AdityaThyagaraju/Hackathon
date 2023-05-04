@@ -1,3 +1,100 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to right top, #182b4c, #00374f, #004042, #09452c, #394619);
+    backdrop-filter: brightness(0.4);
+}
+
+
+.login-div form {
+    background-color: #ffffff;
+    width:600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #cccccc;
+}
+
+.login-div label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666666;
+}
+
+.login-div input[type="text"], input[type="password"],input[type="number"],input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 5px #cccccc;
+}
+.login-div input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.login-div input[type="submit"] {
+    background-color: #346936;
+    color: #ffffff;
+    width: 60%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transform: translateX(75px);
+    margin-bottom: 20px;
+}
+
+.login-div input[type="submit"]:hover {
+    background-color: #264c28;
+}
+
+.signin-div form {
+    background-color: #ffffff;
+    width:600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #cccccc;
+    display: grid;
+  grid-template-columns: auto auto ;
+  gap: 20px;
+}
+
+.signin-div label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666666;
+}
+
+.signin-div input[type="text"], input[type="password"],input[type="number"],input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 5px #cccccc;
+}
+.signin-div input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.signin-div input[type="submit"] {
+    background-color: #346936;
+    color: #ffffff;
+    width: 60%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transform: translateX(110px);
+    margin-bottom: 20px;
+}
+
+.signin-div input[type="submit"]:hover {
+    background-color: #264c28;
+}
 
 html{
     margin-top: -8px;

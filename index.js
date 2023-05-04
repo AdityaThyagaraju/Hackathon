@@ -48,7 +48,7 @@ const auctionSchema = new mongoose.Schema({
 
 app.route("/")
 .get((req,res)=>{
-    res.render("login")
+    res.render("signup")
 })
 
 
