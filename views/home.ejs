@@ -8,7 +8,7 @@
 </head>
 <body>
   
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
   <a class="navbar-brand ms-3" href="#">Navbar</a>
   <button
     class="navbar-toggler"
@@ -30,17 +30,17 @@
         <a class="nav-link" href="#">MemberShip</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">signUp</a>
+        <a class="nav-link" href="signup.ejs">signUp</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
+        <a class="nav-link" href="login.ejs">Login</a>
       </li>
     </ul>
   </div>
 </nav>
 
 <div class="home-page-image-div">
-  
+  <img class="home-page-img" src="/images/home-page.jpg" alt="images">
   <div class="intro-div">
     <h1 style="color:green;">Agricultural auctions and Sales</h1>
     <hr />
@@ -74,9 +74,29 @@ Overall, agricultural bidding can be an effective way for farmers, producers, an
   </div>
   
 </div>
-<footer style="display: flex; justify-content: center; height: 100px; align-items: center; color:white; background-color: black;">
-  <h4>
-    copyright@2023
-  <h4>
+<footer>
+  <div class="footer" id="contact-us" style="color: white;">
+    <div class="">
+      <a href="#"><i class="fa fa-facebook"></i></a>
+      <a href="#"><i class="fa fa-instagram"></i></a>
+      <a href="#"><i class="fa fa-youtube"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+    </div>
+    <br />
+
+    <div class="row">
+      <ul>
+        <li><a href="#">Contact us</a></li>
+        <li><a href="#">Our Services</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">Career</a></li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <p>AGROW © 2023 - All rights reserved</p>
+    </div>
+  </div>
 </footer>
 <%- include('partials/footer'); -%>
