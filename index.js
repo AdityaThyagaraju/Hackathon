@@ -80,7 +80,7 @@ setInterval(() => {
   }, 1000);
 
 app.route("/").get((req, res) => {
-  res.render("home");
+  res.render("bidding");
 });
 
 app.route("/login").post(function (req, res) {
