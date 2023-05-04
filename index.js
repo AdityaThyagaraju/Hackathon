@@ -24,14 +24,32 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-const dbUrl = "mongodb+srv://deekshith:2avyCCdkZ5h2yN9D@cluster0.71trsjd.mongodb.net/?retryWrites=true&w=majority"
+const dbUrl = "mongodb+srv://deekshith:2avyCCdkZ5h2yN9D@cluster0.71trsjd.mongodb.net/UsersDb?retryWrites=true&w=majority"
 mongoose.connect(dbUrl,{useNewUrlParser: true,useUnifiedTopology:true}).then(()=>{
-    console.log("connected to database");
+    log("connected to database")
 }).catch((err)=>{
     console.log(err);
 })
 
+const userSchema = new mongoose.Schema({
+    name:String,
+    username:String,
+    password:String,
+    phone:Number,
+    aadhar:Number,
+})
 
+userSchema.plugin(passportLocalMongoose);
+
+const auctionSchema = new mongoose.Schema({
+    from:String,
+    to:String
+})
+
+app.route("/")
+.get((req,res)=>{
+    res.render("home")
+})
 
 
 app.listen("3000",()=>{
