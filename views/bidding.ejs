@@ -55,9 +55,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">MemberShip</a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="/logout">Log out</a>
         </li>
@@ -80,10 +78,16 @@
     </div>
     <div class="my-bid-div card d-flex flex-row justify-content-center align-items-center p-5">
       <h2>Enter your bid amount</h2>
-      <div class="w-50 d-flex justify-content-center align-items-center bg-light text-black">
-        <input type="Number" class="d-inline mb-0">
-      <i class="fa-solid fa-indian-rupee-sign me-2"></i>
-      </div>
+      
+      <form action="/bidamount" method="post">
+        <div class="w-100 d-flex justify-content-center align-items-center bg-light text-black">
+          <input type="Number" class="d-inline mb-0 bg-light text-black" name="bidamount">
+          <i class="fa-solid fa-indian-rupee-sign me-2"></i>
+        </div>
+        
+        <input style="color: black; background-color: rgb(14, 85, 17);" class="btn btn-outline-lignt w-100 mt-5" type="submit" value="bid">
+      </form>
+      
     </div>
   </div>
   
