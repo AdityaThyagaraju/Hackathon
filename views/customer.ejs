@@ -103,11 +103,18 @@
         <br>
         <div class="auction-li">
             <img src="https://tse2.mm.bing.net/th?id=OIP.avb9nDfw3kq7NOoP0grM4wHaEK&pid=Api&P=0">
-            <div class="w-100">
+            <% for(var i=0;i<auctionsList.length;i++){ %>
+              <% const link = "/enterauction/"+String(i)" %>
+              <div class="w-100">
                 <div>Product Name:</div>
                 <div>Auction Started at:</div>
-                <a href="#">Click to bid</a>
+                <% if(user.valet>=auctionsList[i].basePrice){ %>
+                <a id="1enterBid" href=<%= link %>>Click to bid</a>
+                <% } else { %>
+                <a id="1enterBid" href="#">Insufficient amount</a>
+                <% } %>
             </div>
+            <% } %>
         </div>
       </div>
 <%- include("partials/footer") -%>
