@@ -39,6 +39,15 @@ mongoose
     console.log(err);
   });
 
+const auctionSchema = new mongoose.Schema({
+  bought: Boolean,
+  sold: Boolean,
+  product: String,
+  amount: Number,
+  from: String,
+  to: String,
+});
+
 const userSchema = new mongoose.Schema({
   name: String,
   username: String,
@@ -51,15 +60,6 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.plugin(passportLocalMongoose);
-
-const auctionSchema = new mongoose.Schema({
-  bought: Boolean,
-  sold: Boolean,
-  product:String,
-  amount:Number,
-  from: String,
-  to: String,
-});
 
 const User = new mongoose.model("User", userSchema);
 const Auction = new mongoose.model("Auction", auctionSchema);
@@ -88,9 +88,9 @@ setInterval(() => {
           $addToSet: {
             bought: false,
             sold: true,
-            product:auctions[i].product,
+            product: auctions[i].product,
             from: auctions[i].sellerUsn,
-            amount:auctions[i].amount,
+            amount: auctions[i].amount,
             to: auctions[i].buyerUsn,
           },
           $inc: {
@@ -104,8 +104,8 @@ setInterval(() => {
             $addToSet: {
               bought: true,
               sold: false,
-              product:auctions[i].product,
-              amount:auctions[i].amount,
+              product: auctions[i].product,
+              amount: auctions[i].amount,
               from: auctions[i].sellerUsn,
               to: auctions[i].buyerUsn,
             },
@@ -235,10 +235,9 @@ app
     }
   });
 
-app.route("/history")
-.get((req,res)=>{
-  res.render("history",{user:req.user})
-})
+app.route("/history").get((req, res) => {
+  res.render("history", { user: req.user });
+});
 
 app.route("/logout").get((req, res) => {
   req.logout(() => {
