@@ -1,25 +1,80 @@
+<%- include('partials/header'); -%>
+<style>
+  .crops-div p{
+    font-size: 24px
+  }
+</style>
+</head>
+<body>
+  
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand ms-3" href="#">Navbar</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ms-auto me-2">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">MemberShip</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">signUp</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-<%- include('partial/header'); -%>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto me-2">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">MemberShip</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">signUp</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <%- include('partial/footer'); -%>
+<div class="home-page-image-div">
+  
+  <img class="home-page-img" src="/images/home-page.jpg" alt="images" />
+  <div class="intro-div">
+    <h1>Intro to website & welcome</h1>
+    <hr />
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque cum tenetur
+      dolores aspernatur quasi nihil officia numquam fugit natus esse saepe
+      reiciendis nobis, inventore excepturi accusamus consectetur? Voluptate,
+      amet neque! 
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, dolorem temporibus fugiat quisquam veritatis nam nesciunt similique culpa officia deserunt recusandae ipsum doloremque aspernatur vero voluptatibus quae sequi facilis id!
+    </p>
+  </div>
+</div>
+
+<div class="crops-div" style="background-color: aquamarine;">
+  <div style="padding-top:50px; margin-left:50px; ">
+    <p>what can u sell</p>
+    <p>Get huge profit from auctions</p>
+  </div>
+  <div style=" display: flex; justify-content: center;">
+    <div class="crops-div">
+
+    </div>
+    <div class="crops-div">
+  
+    </div>
+    <div class="crops-div">
+  
+    </div>
+  </div>
+  
+</div>
+<footer style="display: flex; justify-content: center; height: 100px; align-items: center; color:white; background-color: black;">
+  <h4>
+    copyright@2023
+  <h4>
+</footer>
+<%- include('partials/footer'); -%>
