@@ -83,7 +83,11 @@ app.route("/").get((req, res) => {
   res.render("home");
 });
 
-app.route("/login").post(function (req, res) {
+app.route("/login")
+.get((req,res)=>{
+  res.render("login")
+})
+.post(function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
   const user = new User({ username, password });
@@ -104,40 +108,51 @@ app.route("/login").post(function (req, res) {
 });
 
 app.route("/user").get(async (req, res) => {
-  // if (req.isAuthenticated()) {
+  if (req.isAuthenticated()) {
     
-  //   const user = await User.findById(req.user.id);
-  //   let auctionsList = [];
-  //   if (auctions.length != 0) {
-  //     for (var i = 0; i < auctions.length; i++) {
-  //       auctionsList.push(auctions[i]);
-  //     }, { user: req.user, auctions: auctionsList }
-  //   }
-    res.render("customer");
-  // }
-});
-
-app.route("/signup").post((req, res) => {
-  const { name, username, phone, aadhar, address, email, password } = req.body;
-  User.register(
-    { username, name, phone, aadhar, address, email },
-    { password },
-    function (err, user) {
-      if (err) {
-        log(err);
-        res.redirect("/signup");
-      } else {
-        passport.authenticate("local")(req, res, function (err) {
-          if (!err) {
-            res.redirect("/customer");
-          } else {
-            log("invalid credentials");
-          }
-        });
+    const user = await User.findById(req.user.id);
+    let auctionsList = [];
+    if (auctions.length != 0) {
+      for (var i = 0; i < auctions.length; i++) {
+        auctionsList.push(auctions[i]);
       }
     }
-  );
+    res.render("customer", { user: req.user, auctions: auctionsList });
+  }
 });
+
+app.route("/signup").get((req,res)=>{
+  res.render("signup")
+})
+.post((req, res) => {
+  const { name, username, phone, aadhar, address, email, password, repassword } = req.body;
+  if(password === repassword){
+    User.register(
+      { username, name, phone, aadhar, address, email, password, repassword },
+      password,
+      function (err, user) {
+        if (err) {
+          log(err);
+          res.redirect("/signup");
+        } else {
+          passport.authenticate("local")(req, res, function (err) {
+            if (!err) {
+              res.redirect("/customer");
+            } else {
+              log("invalid credentials");
+            }
+          });
+        }
+      }
+    );
+  }
+});
+
+app.route("/logout").get((req,res)=>{
+  req.logout(()=>{
+    res.redirect("/")
+  })
+})
 
 app.listen("3000", () => {
   try {
