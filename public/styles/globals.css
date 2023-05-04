@@ -162,8 +162,19 @@ html{
 }
 
 .search-bar {
+  display: flex;
+  justify-content: space-around;
   backdrop-filter: blur(3px) brightness(50%);
   color: white;
+}
+
+.valet-amount{
+  background-color: white;
+  padding: 5px;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 2px;
+  color: #000;
 }
 
 .timings-notice{
@@ -182,6 +193,7 @@ html{
   width: 100%;
   min-height: 300px;
   padding: 5%;
+  padding-left: 15%;
   color: white !important;
   backdrop-filter: blur(3px) brightness(50%);
 }
@@ -192,7 +204,7 @@ html{
 }
 
 .steps-to-start h3 {
-  font-size: 2rem;
+  font-size: 4rem;
   margin-bottom: 2rem;
 }
 
@@ -200,8 +212,12 @@ html{
   color: white !important;
 }
 
+ol li{
+  font-size: 1.5rem;
+}
+
 ol li:hover {
-  font-size: large;
+  font-size: 2rem;
 }
 
 .a-wrapper {
@@ -210,7 +226,7 @@ ol li:hover {
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 40px;
+  font-size: 70px;
   color: rgba(255, 255, 255, 0.603);
 }
 
@@ -229,6 +245,8 @@ a {
   display: flex;
   padding: 5%;
   background-color: white;
+  font-size: 30px;
+  line-height: 50px;
   color: black;
 }
 
@@ -240,6 +258,7 @@ a {
   width: 150px;
   height: 150px;
   border-radius: 100%;
+  margin-right: 3rem;
 }
 
 @media screen and (min-width: 800px) {
