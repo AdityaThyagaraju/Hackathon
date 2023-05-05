@@ -71,7 +71,7 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(async function (id, done) {
-  const user = await User.findById({});
+  const user = await User.findById(id);
   done(null, user);
 });
 
@@ -81,7 +81,7 @@ let auctions = [];
 
 setInterval(() => {
   for (var i = 0; i < auctions.length; i++) {
-    if (auctions[i].timer-- === 0) {
+    if (auctions[i].time-- === 0) {
       User.update(
         { username: auctions[i].sellerUsn },
         {
@@ -115,12 +115,15 @@ setInterval(() => {
           }
         ).then(() => {
           delete auctions[i];
-          io.sockets.emit("updateAuctions", { auctions: auctions });
+          io.sockets.clients(String(i)).forEach(function(s){
+            s.leave(String(i));
+        });
+          io.sockets.emit("updateAuctions", { auctions: auctions,user:req.user });
           io.to(String(i)).emit("auctionCompleted");
         });
       });
     } else {
-      io.to(String(i)).emit("timer", auctions[i].timer);
+      io.to(String(i)).emit("timer",{time : auctions[i].time});
     }
   }
 }, 1000);
@@ -167,18 +170,25 @@ app.route("/user").get(async (req, res) => {
   }
 });
 
-app.route("/createauction").post((req, res) => {
-  const { product, basePrice } = req.body;
+app.route("/createauction")
+.get((req,res)=>{
+  res.render("auction")
+})
+.post((req, res) => {
+  let currentDate = new Date();
+  let time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+  const { product, baseprice } = req.body;
   auctions.push({
     sellerUsn: req.user.username,
     product,
-    basePrice,
-    startTime: Date.now(),
+    baseprice,
+    startTime: time,
     time: 3600,
     bidAmount: 0,
     buyerUsn: 0,
   });
-  res.redirect("/seller");
+  io.sockets.emit("updateAuctions",{auctions:auctions,user:req.user})
+  res.redirect("/user");
 });
 
 app
@@ -199,7 +209,7 @@ app
     } = req.body;
     if (password === repassword) {
       User.register(
-        { username, name, phone, aadhar, address, email, password, repassword },
+        { username, name, phone, aadhar, address, email, valet:10000 },
         password,
         function (err, user) {
           if (err) {
@@ -208,7 +218,7 @@ app
           } else {
             passport.authenticate("local")(req, res, function (err) {
               if (!err) {
-                res.redirect("/customer");
+                res.redirect("/user");
               } else {
                 log("invalid credentials");
               }
@@ -222,17 +232,19 @@ app
 app
   .route("/enterauction/:params")
   .get((req, res) => {
-    const roomId = req.params;
+    const roomId = String(req.params.params);
     io.sockets.on("connection", (socket) => {
       socket.join(roomId);
     });
+    res.render("bidding",{roomId:roomId})
   })
   .post((req, res) => {
-    const roomId = Number(req.params);
-    if (req.bidAmount > auctions[roomId]) {
+    const roomId = Number(req.params.params);
+    if (req.body.bidamount > auctions[roomId].bidAmount) {
       auctions[roomId].buyerUsn = req.user.username;
-      auctions[roomId].bidAmount = req.body.bidAmount;
+      auctions[roomId].bidAmount = req.body.bidamount;
     }
+    res.redirect("/enterauction/"+String(roomId))
   });
 
 app.route("/history").get((req, res) => {
@@ -245,7 +257,7 @@ app.route("/logout").get((req, res) => {
   });
 });
 
-app.listen("3000", () => {
+http.listen("3000", () => {
   try {
     console.log("Server started at port 3000");
   } catch (err) {
