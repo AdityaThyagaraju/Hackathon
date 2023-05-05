@@ -13,6 +13,9 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const { log } = require("console");
 const { connect } = require("http2");
 const { emit } = require("process");
+const PUBLISHABLE_KEY="pk_test_51N4DksSEyHIxQ9jvVSThkcQdrUlRDcuZm4AYj4XPKErZwphlPXqzJFUgwFEp7I8hOjaHrrMyorKF3A4cGYBLLUwW00LACZrU8l";
+const SECRET_KEY="sk_test_51N4DksSEyHIxQ9jv3mn5GSebN9vQ0AcC1IIsRFBkOVqKdFyMO8EKKhr4NKoInUSSDbzyiI3DEINL1bEhVIP0hSvA00zWsPo5tC";
+const stripe = require('stripe')(SECRET_KEY)
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -124,6 +127,47 @@ setInterval(() => {
     }
   }
 }, 1000);
+
+
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.get('/wallet',(req,res)=>{
+  res.render('wallet',{
+    key:PUBLISHABLE_KEY
+  })
+})
+
+app.post('/payment',(req,res)=>{
+  stripe.customers.create({
+    email:req.body.stripeEmail,
+    source:req.body.stripeToken,
+    name:"deekshith",
+    address:{
+      line1:"23 vijaynagar",
+      postal_code:'560040',
+      city:'Bangalore',
+      state:'Karnataka',
+      country:'India'
+    }
+  }).then((customer)=>{
+    return stripe.charges.create({
+      amount:7000,
+      description:'product',
+      currency:'USD',
+      customer:customer.id
+    })
+  }).then((charge)=>{
+    console.log(charge)
+    res.send("success")
+  })
+  .catch((err)=>{
+    res.send(err)
+  })
+})
+
+
+//        //////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.route("/").get((req, res) => {
   res.render("home");
