@@ -5,7 +5,7 @@
 </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand ms-3" href="#">AGROW</a>
         <button
           class="navbar-toggler"
@@ -21,10 +21,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto me-2">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">MemberShip</a>
+              <a class="nav-link" href="/history">History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/wallet">Add to Wallet</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/logout">Log out</a>
@@ -32,14 +35,17 @@
           </ul>
         </div>
     </nav>
-    <div class="search-bar p-3 ps-5 ">
-      <span><input class="me-1" type="text" /><i class="fa-solid fa-magnifying-glass"></i></span>
+    <div class="search-bar p-3 ps-5">
+      <span>
+        <span><input class="me-2" type="text" /><i class="fa-solid fa-magnifying-glass"></i></span>
       <span class="ms-5">Search for products</span>
+      </span>
+      <span class="valet-amount">Valet amount:<%= user.valet %></span>
     </div>
       <div class="timings-notice d-flex justify-content-around p-3 text-white">
-        <span>Auction Timings:</span>
-        <span>Weekoffs:</span>
-        <span>Sale Days:</span>
+        <span>Auction Timings: 5:00 - 13:00</span>
+        <span>Weekoffs: Tuesday</span>
+        <span>Sale Days: Sunday</span>
       </div>
       <div id="carouselExampleCaptions" class="carousel slide">
         <div class="carousel-indicators">
@@ -92,19 +98,26 @@
             </ol>
         </div>
         <div class="a-wrapper">
-            <a href="#">Start Auction Now</a>
+            <a href="/createauction">Start Auction Now</a>
         </div>
       </div>
       <div class="auction-list">
         <h3>On Going Auctions ...</h3>
         <br>
-        <div class="auction-li">
-            <img src="https://tse2.mm.bing.net/th?id=OIP.avb9nDfw3kq7NOoP0grM4wHaEK&pid=Api&P=0">
-            <div class="w-100">
-                <div>Product Name:</div>
-                <div>Auction Started at:</div>
-                <a href="#">Click to bid</a>
+        <% for(var i=0;i < auctions.length;i++){ %>
+          <div class="auction-li">
+              <img src="https://tse2.mm.bing.net/th?id=OIP.avb9nDfw3kq7NOoP0grM4wHaEK&pid=Api&P=0">
+              <% const link = "/enterauction/"+String(i) %>
+              <div class="w-100">
+                <div>Product Name:<%= auctions[i].product %></div>
+                <div>Auction Started at:<%= auctions[i].startTime %></div>
+                <% if(user.valet>=auctions[i].baseprice){ %>
+                <a href=<%= link %>>Click to bid</a>
+                <% } else { %>
+                <a href="#">Insufficient amount</a>
+                <% } %>
             </div>
-        </div>
+          </div>
+            <% } %>
       </div>
 <%- include("partials/footer") -%>
