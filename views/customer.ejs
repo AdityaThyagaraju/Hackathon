@@ -40,7 +40,7 @@
         <span><input class="me-2" type="text" /><i class="fa-solid fa-magnifying-glass"></i></span>
       <span class="ms-5">Search for products</span>
       </span>
-      <span class="valet-amount">Valet amount: $$$$</span>
+      <span class="valet-amount">Valet amount:<%= user.valet %></span>
     </div>
       <div class="timings-notice d-flex justify-content-around p-3 text-white">
         <span>Auction Timings: 5:00 - 13:00</span>
@@ -98,26 +98,26 @@
             </ol>
         </div>
         <div class="a-wrapper">
-            <a href="#">Start Auction Now</a>
+            <a href="/createauction">Start Auction Now</a>
         </div>
       </div>
       <div class="auction-list">
         <h3>On Going Auctions ...</h3>
         <br>
-        <div class="auction-li">
-            <img src="https://tse2.mm.bing.net/th?id=OIP.avb9nDfw3kq7NOoP0grM4wHaEK&pid=Api&P=0">
-            <% for(var i=0;i<auctionsList.length;i++){ %>
-              <% const link = "/enterauction/"+String(i)" %>
+        <% for(var i=0;i < auctions.length;i++){ %>
+          <div class="auction-li">
+              <img src="https://tse2.mm.bing.net/th?id=OIP.avb9nDfw3kq7NOoP0grM4wHaEK&pid=Api&P=0">
+              <% const link = "/enterauction/"+String(i) %>
               <div class="w-100">
-                <div>Product Name:</div>
-                <div>Auction Started at:</div>
-                <% if(user.valet>=auctionsList[i].basePrice){ %>
-                <a id="1enterBid" href=<%= link %>>Click to bid</a>
+                <div>Product Name:<%= auctions[i].product %></div>
+                <div>Auction Started at:<%= auctions[i].startTime %></div>
+                <% if(user.valet>=auctions[i].baseprice){ %>
+                <a href=<%= link %>>Click to bid</a>
                 <% } else { %>
-                <a id="1enterBid" href="#">Insufficient amount</a>
+                <a href="#">Insufficient amount</a>
                 <% } %>
             </div>
+          </div>
             <% } %>
-        </div>
       </div>
 <%- include("partials/footer") -%>
